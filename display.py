@@ -30,8 +30,7 @@ def main():
     handle_internet_info()
 
 
-if __name__ == '__main__':
-    main()
+
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.connect(("8.8.8.8", 80))
