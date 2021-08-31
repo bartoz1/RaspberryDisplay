@@ -10,12 +10,12 @@ class DB:
         self._mydb = mysql.connector.connect(host = config['mysqlDB']['host'],
                            user = config['mysqlDB']['user'],
                            passwd = config['mysqlDB']['pass'],
-                           db = config['mysqlDB']['db'])
-        self._mycursor = self._mydb.cursor()
-        self._seccursor = self._mydb.cursor()
+                           db = config['mysqlDB']['db'],
+                           autocommit=True)
 
 
     def get_last_update(self):
+        self._mycursor = self._mydb.cursor()
         self._mycursor.execute("SELECT created_at FROM sales ORDER BY created_at DESC LIMIT 1")
         myresult = self._mycursor.fetchall()
         data = myresult[0][0]
