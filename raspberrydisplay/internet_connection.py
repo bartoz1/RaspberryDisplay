@@ -21,4 +21,4 @@ def get_local_ip():
 def check_internet():
     if internet_on():
         ip = get_local_ip()
-        print('jest internet', ip)
+
