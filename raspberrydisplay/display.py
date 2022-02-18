@@ -5,6 +5,7 @@ from luma.oled.device import ssd1306, ssd1309, ssd1325, ssd1331, sh1106, ws0010
 import socket
 import urllib.error
 import urllib.request
+import psutil
 from raspberrydisplay.db import DB
 import configparser
 from gpiozero import CPUTemperature, LoadAverage
@@ -41,15 +42,24 @@ class Display:
         self._check_internet()
         if self._db is not None:
             self.db_status = self._db.get_last_update()
+
         cpu = CPUTemperature()
         cpu_temp = round(cpu.temperature)
-        cpu_usage = str(int(LoadAverage(minutes=1).load_average*100))
+        cpu_usage = psutil.cpu_percent()
+
+        # Calculate memory information
+        memory = psutil.virtual_memory()
+        # Convert Bytes to MB (Bytes -> KB -> MB)
+        available = round(memory.available/1024.0/1024.0,1)
+        total = round(memory.total/1024.0/1024.0,1)
 
         # Displaying all the info
         with canvas(self._device) as draw:
             draw.rectangle(self._device.bounding_box, outline="white", fill="black")
-            draw.text((5, 20), f'CPU usage: {cpu_usage}%', fill="white")
-            draw.text((5, 30), f'CPU: {cpu_temp}\u00B0C', fill="white")
+            draw.text((5, 0), f'MEM: {available} / {total} MB ; {memory.percent}%', fill="white")
+            draw.text((5, 10), f'MEM usage: {memory.percent}%', fill="white")
+            draw.text((5, 20), f'CPU: {cpu_temp}\u00B0C', fill="white")
+            draw.text((5, 30), f'CPU usage: {cpu_usage}%', fill="white")
             draw.text((5, 40), f'IP: {self.ip}', fill="white")
             draw.text((5, 50), f'{self.db_status}', fill="white")
             
