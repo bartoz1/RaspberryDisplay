@@ -12,7 +12,7 @@ from gpiozero import CPUTemperature, LoadAverage
 
 import RPi.GPIO as GPIO
 GPIO.setwarnings(False)
-
+    
 LOADING_TEXT = 'loading...'
 
 
@@ -55,20 +55,21 @@ class Display:
             
             print('all')
 
+    def turn_off(self):
+        self._device.command(0xAE)  # display off signal
+
     def _internet_on(self):
         try:
-            urllib.request.urlopen('http://www.google.com', timeout=1)
+            urllib.request.urlopen('http://www.wp.pl', timeout=1)
             return True
         except urllib.error.URLError as err:
             return False
-
 
     def _get_local_ip(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))
         ip = s.getsockname()[0]
         return ip
-
 
     def _check_internet(self):
         if self._internet_on():
