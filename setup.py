@@ -1,4 +1,9 @@
+import os
 from setuptools import setup, find_packages
+
+
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
 
 setup(
    name='raspberrydisplay',
@@ -6,6 +11,7 @@ setup(
    description='A simple module for displaying RaspberryPi 4 info onto OLED display',
    author='RushKappa',
    author_email='bartoszzylwis@gmail.com',
+   install_requires=required,
    packages=find_packages(),
    
 )
