@@ -1,8 +1,9 @@
+import os
+import time
+import configparser
 import RPi.GPIO as GPIO  
 from raspberrydisplay.display import Display
 from gpiozero import Button
-import time
-import configparser
 
 def use_display(display_time):
     display = Display()
