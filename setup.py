@@ -11,7 +11,7 @@ setup(
    description='A simple module for displaying RaspberryPi 4 info onto OLED display',
    author='RushKappa',
    author_email='bartoszzylwis@gmail.com',
-   data_files=[('conf', ['config.ini'])],
+   data_files=[('./', ['config.ini'])],
    install_requires=required,
    packages=find_packages(),
    
