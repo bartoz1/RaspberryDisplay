@@ -1,7 +1,7 @@
 ![alt text](https://github.com/bartoz1/RaspberryDisplay/blob/main/demo_display.png?raw=true)
 # Raspberry Pi Oled System Monitoring
 
-Simple python moduled for displaying information about Raspberry Pi on SH1106 display.
+Simple python module for displaying information about Raspberry Pi on SH1106 display.
 ### Displayed info
 * Memory used / memory available [MB]
 * Memory usage [%]
