@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
    name='raspberrydisplay',
-   version='0.5',
+   version='0.6',
    description='A simple module for displaying RaspberryPi 4 info onto OLED display',
    author='RushKappa',
    author_email='bartoszzylwis@gmail.com',
