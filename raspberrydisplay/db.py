@@ -6,7 +6,9 @@ import configparser
 class DB:
     def __init__(self):
         config = configparser.ConfigParser()
-        config.read('config.ini')
+        mydir = os.path.dirname(os.path.abspath(__file__))
+        config.read(os.path.join(mydir, 'config.ini'))
+
         self._query = config['mysqlDB']['query']
         self._query = self._query.replace("'", "")
         self._mydb = mysql.connector.connect(host = config['mysqlDB']['host'],

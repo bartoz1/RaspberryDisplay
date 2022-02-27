@@ -20,7 +20,8 @@ LOADING_TEXT = 'loading...'
 class Display:
     def __init__(self):
         self._config = configparser.ConfigParser()
-        self._config.read('config.ini')
+        mydir = os.path.dirname(os.path.abspath(__file__))
+        self._config.read(os.path.join(mydir, 'config.ini'))
 
         self.ip = LOADING_TEXT
         self.db_status = LOADING_TEXT

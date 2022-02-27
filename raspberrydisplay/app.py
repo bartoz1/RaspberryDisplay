@@ -15,7 +15,9 @@ def use_display(display_time):
 def run():
     # getting app config
     config = configparser.ConfigParser()
-    config.read('config.ini')
+    mydir = os.path.dirname(os.path.abspath(__file__))
+    config.read(os.path.join(mydir, 'config.ini'))
+    
     display_time = int(config['DISPLAY']['display_time'])
 
     GPIO.setmode(GPIO.BCM)  
